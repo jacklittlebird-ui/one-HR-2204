@@ -31,6 +31,7 @@ import { Form01 } from '@/components/documents/Form01';
 import { Form06 } from '@/components/documents/Form06';
 import { EmploymentContract } from '@/components/documents/EmploymentContract';
 import { ClearanceCertificate } from '@/components/documents/ClearanceCertificate';
+import { ExperienceCertificate } from '@/components/documents/ExperienceCertificate';
 
 interface Document {
   id: string;
