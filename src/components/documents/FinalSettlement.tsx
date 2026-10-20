@@ -4,6 +4,7 @@ import { Employee } from '@/types/employee';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Printer } from 'lucide-react';
+import { EmployeeFormDownloadButton } from '@/components/documents/EmployeeFormDownload';
 
 interface FinalSettlementProps {
   employee: Employee;

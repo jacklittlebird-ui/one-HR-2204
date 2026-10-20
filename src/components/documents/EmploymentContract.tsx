@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Printer } from 'lucide-react';
+import { EmployeeFormDownloadButton } from '@/components/documents/EmployeeFormDownload';
 import { cn } from '@/lib/utils';
 import linkAeroLogo from '@/assets/link-aero-logo.png';
 

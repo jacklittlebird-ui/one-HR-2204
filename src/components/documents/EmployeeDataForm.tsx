@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Printer } from 'lucide-react';
+import { EmployeeFormDownloadButton } from '@/components/documents/EmployeeFormDownload';
 import { cn } from '@/lib/utils';
 
 interface EmployeeDataFormProps {
