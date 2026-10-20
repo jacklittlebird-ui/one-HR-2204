@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Printer } from 'lucide-react';
+import { EmployeeFormDownloadButton } from '@/components/documents/EmployeeFormDownload';
 import { cn } from '@/lib/utils';
 import linkAeroLogo from '@/assets/link-aero-logo.png';
 
@@ -306,6 +307,7 @@ export const EmploymentContract = ({ employee }: EmploymentContractProps) => {
           <Button onClick={print} className="gap-2">
             <Printer className="h-4 w-4" />{isAr ? 'طباعة / PDF' : 'Print / PDF'}
           </Button>
+          <EmployeeFormDownloadButton />
         </CardContent>
       </Card>
 

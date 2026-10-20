@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Printer } from 'lucide-react';
+import { EmployeeFormDownloadButton } from '@/components/documents/EmployeeFormDownload';
 import { cn } from '@/lib/utils';
 import ministryLogo from '@/assets/ministry-labour-logo-v2.png.asset.json';
 
@@ -242,6 +243,7 @@ export const MutualTermination = ({ employee }: MutualTerminationProps) => {
           <Button onClick={print} className="gap-2">
             <Printer className="h-4 w-4" />{isAr ? 'طباعة / PDF' : 'Print / PDF'}
           </Button>
+          <EmployeeFormDownloadButton />
         </CardContent>
       </Card>
 

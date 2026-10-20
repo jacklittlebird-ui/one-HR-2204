@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Printer } from 'lucide-react';
+import { EmployeeFormDownloadButton } from '@/components/documents/EmployeeFormDownload';
 import nosiLogo from '@/assets/nosi-logo.png';
 
 interface Form01Props {
@@ -384,6 +385,7 @@ export const Form01 = ({ employee }: Form01Props) => {
           <Button onClick={print} className="gap-2">
             <Printer className="h-4 w-4" />{isAr ? 'طباعة / PDF' : 'Print / PDF'}
           </Button>
+          <EmployeeFormDownloadButton />
         </CardContent>
       </Card>
 
