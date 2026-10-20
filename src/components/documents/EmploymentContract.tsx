@@ -307,6 +307,7 @@ export const EmploymentContract = ({ employee }: EmploymentContractProps) => {
           <Button onClick={print} className="gap-2">
             <Printer className="h-4 w-4" />{isAr ? 'طباعة / PDF' : 'Print / PDF'}
           </Button>
+          <EmployeeFormDownloadButton />
         </CardContent>
       </Card>
 
