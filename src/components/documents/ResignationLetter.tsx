@@ -92,10 +92,12 @@ export const ResignationLetter = ({ employee }: ResignationLetterProps) => {
           <div className="h-9 flex items-center px-3 rounded-md border bg-muted/50 text-sm min-w-[280px]">
               {emp.employee_code} — {emp.name_ar}
           </div>
-          <Button onClick={print} className="gap-2">
-            <Printer className="h-4 w-4" />{isAr ? 'طباعة / PDF' : 'Print / PDF'}
-          </Button>
-          <EmployeeFormDownloadButton />
+          <div className="flex items-center gap-2">
+            <Button onClick={print} className="gap-2">
+              <Printer className="h-4 w-4" />{isAr ? 'طباعة / PDF' : 'Print / PDF'}
+            </Button>
+            <EmployeeFormDownloadButton />
+          </div>
         </CardContent>
       </Card>
 
