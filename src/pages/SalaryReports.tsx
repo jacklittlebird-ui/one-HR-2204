@@ -18,6 +18,7 @@ import { exportMonthlyByStationExcel } from '@/lib/monthlyByStationExcel';
 import { exportEmployeeDetailExcel, type EDRow, type EDKpi } from '@/lib/employeeDetailExcel';
 import { toast } from 'sonner';
 import { SalaryComparison } from '@/components/reports/SalaryComparison';
+import { PayrollAttachmentReport } from '@/components/reports/PayrollAttachmentReport';
 
 const COLORS = ['#3b82f6', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4', '#ec4899', '#f97316', '#14b8a6', '#6366f1', '#84cc16', '#e11d48', '#0ea5e9', '#a855f7'];
 
@@ -948,6 +949,7 @@ const SalaryReports = () => {
     { id: 'employee-detail', label: ar ? 'تفصيل رواتب الموظفين' : 'Employee Salary Detail' },
     { id: 'allowances', label: ar ? 'تحليل البدلات والخصومات' : 'Allowances & Deductions' },
     { id: 'compare', label: ar ? 'مقارنة المرتبات' : 'Salary Comparison' },
+    { id: 'attachment', label: ar ? 'مرفق المرتبات' : 'Payroll Attachment' },
   ];
 
   return (
@@ -1589,6 +1591,10 @@ const SalaryReports = () => {
 
         <TabsContent value="compare">
           <SalaryComparison />
+        </TabsContent>
+
+        <TabsContent value="attachment">
+          <PayrollAttachmentReport />
         </TabsContent>
       </Tabs>
     </DashboardLayout>
