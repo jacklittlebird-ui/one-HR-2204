@@ -219,7 +219,7 @@ const VehiclePortal = () => {
       {refreshing && (
         <div className="shrink-0 w-full px-4 mt-3">
           <div role="status" aria-live="polite" className="flex items-center gap-2 rounded-md border border-primary/30 bg-primary/5 px-4 py-2 text-sm text-primary">
-            <Loader2 className="h-4 h-4 animate-spin" />
+            <Loader2 className="h-4 w-4 animate-spin" />
             <span>{isAr ? 'جاري تحديث بيانات السيارات...' : 'Refreshing vehicle data...'}</span>
           </div>
         </div>
