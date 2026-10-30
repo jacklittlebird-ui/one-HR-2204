@@ -14,6 +14,7 @@ import { VehicleRegistry } from '@/components/vehicles/VehicleRegistry';
 import { VehicleLicenseTracking } from '@/components/vehicles/VehicleLicenseTracking';
 import { VehicleMaintenance } from '@/components/vehicles/VehicleMaintenance';
 import { VehicleReports } from '@/components/vehicles/VehicleReports';
+import { VehicleRoster } from '@/components/vehicles/VehicleRoster';
 import { usePreventPullToRefresh } from '@/hooks/usePreventPullToRefresh';
 
 const VehiclePortal = () => {
@@ -55,6 +56,7 @@ const VehiclePortal = () => {
 
   const tabs = [
     { id: 'by-station', label: isAr ? 'سيارات المحطة' : 'Station Vehicles' },
+    { id: 'roster', label: isAr ? 'الروستر' : 'Roster' },
     { id: 'reports', label: isAr ? 'التقارير' : 'Reports' },
     { id: 'alerts', label: isAr ? 'تنبيهات التراخيص' : 'License Alerts' },
     { id: 'registry', label: isAr ? 'سجل السيارات' : 'Vehicle Registry' },
@@ -145,6 +147,7 @@ const VehiclePortal = () => {
                 dir={isRTL ? 'rtl' : 'ltr'}
               >
                 {tab.id === 'by-station' && <FleetByStation key={`fbs-${refreshKey}`} />}
+                {tab.id === 'roster' && <VehicleRoster key={`roster-${refreshKey}`} />}
                 {tab.id === 'reports' && <VehicleReports key={`vrep-${refreshKey}`} />}
                 {tab.id === 'alerts' && <LicenseAlerts key={`la-${refreshKey}`} />}
                 {tab.id === 'registry' && <VehicleRegistry key={`vr-${refreshKey}`} />}

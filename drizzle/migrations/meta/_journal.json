@@ -120,6 +120,13 @@
       "when": 1792401452203,
       "tag": "0016_enforce_marriage_leave_seven_days_excluding_fridays",
       "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1793391838199,
+      "tag": "0017_vehicle_manager_roster_read_access",
+      "breakpoints": true
     }
   ]
 }
