@@ -7,7 +7,7 @@ import {
   LayoutDashboard, User, Clock, Calendar, Wallet, HandCoins,
   Star, GraduationCap, Package, FileText, MapPin, Ban,
   ClipboardList, Bell, Settings, PanelLeftClose, PanelLeftOpen, Shirt, ShieldCheck,
-  Gift, Award,
+  Gift, Award, CalendarDays,
 } from 'lucide-react';
 
 interface SidebarGroup {
@@ -64,6 +64,7 @@ const sidebarGroups: SidebarGroup[] = [
     labelAr: 'الطلبات',
     labelEn: 'Requests',
     items: [
+      { key: 'roster', labelAr: 'الروستر', labelEn: 'Roster', icon: CalendarDays },
       { key: 'missions', labelAr: 'مأمورياتي', labelEn: 'Missions', icon: MapPin },
       { key: 'violations', labelAr: 'مخالفاتي', labelEn: 'Violations', icon: Ban },
       { key: 'requests', labelAr: 'الطلبات', labelEn: 'Requests', icon: ClipboardList },
