@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { rosterPeriod, rosterCode, rosterTotals, currentRosterMonth, expandRange } from '@/lib/roster';
+import { rosterPeriod, rosterCode, rosterTotals, currentRosterMonth, expandRange, compareRoster } from '@/lib/roster';
 
 describe('roster period', () => {
   it('runs from the 26th of last month to the 25th of this month', () => {
@@ -38,5 +38,16 @@ describe('roster codes', () => {
   });
   it('clips leave ranges to the period', () => {
     expect(expandRange('2026-09-24', '2026-09-27', '2026-09-26', '2026-10-25')).toEqual(['2026-09-26', '2026-09-27']);
+  });
+});
+
+describe('roster order for any station', () => {
+  it('puts allowance before code, and code last', () => {
+    const list = [
+      { employeeId: 'emp0001', jobTitleAr: 'سائق' },
+      { employeeId: 'emp0900', jobTitleAr: 'سائق', hasRosterAllowance: true },
+      { employeeId: 'emp0005', jobTitleAr: 'مشرف' },
+    ].sort(compareRoster).map(e => e.employeeId);
+    expect(list).toEqual(['emp0900', 'emp0005', 'emp0001']);
   });
 });

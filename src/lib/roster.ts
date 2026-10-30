@@ -60,7 +60,7 @@ export function rosterJobGroup(title: string | null | undefined): number {
 export interface RosterSortable { employeeId?: string; jobTitle?: string; jobTitleAr?: string; hasRosterAllowance?: boolean }
 
 /** Sharm order: roster allowance first, then employees → representatives → workers → drivers, then code. */
-export function compareSharmRoster(a: RosterSortable, b: RosterSortable): number {
+export function compareRoster(a: RosterSortable, b: RosterSortable): number {
   const ra = a.hasRosterAllowance ? 0 : 1, rb = b.hasRosterAllowance ? 0 : 1;
   if (ra !== rb) return ra - rb;
   const ga = rosterJobGroup(a.jobTitleAr || a.jobTitle), gb = rosterJobGroup(b.jobTitleAr || b.jobTitle);
