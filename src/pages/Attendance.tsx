@@ -14,6 +14,8 @@ import TamperAttemptsTab from '@/components/attendance/TamperAttemptsTab';
 import { useAttendanceData } from '@/contexts/AttendanceDataContext';
 import { WorkHoursByStation } from '@/components/attendance/WorkHoursByStation';
 import { OfficialHolidays } from '@/components/attendance/OfficialHolidays';
+import { RosterGrid } from '@/components/attendance/RosterGrid';
+import { useEmployeeData } from '@/contexts/EmployeeDataContext';
 import { Clock, List, AlertTriangle, BarChart3, Calendar, Settings2, Users, RefreshCw, Navigation, Timer, CalendarDays, Shield } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -27,6 +29,8 @@ const Attendance = () => {
   const { t, isRTL, language } = useLanguage();
   const { records, refresh: refreshAttendance, checkIn, checkOut } = useAttendanceData();
   const [activeTab, setActiveTab] = useState('checkin');
+  const { employees } = useEmployeeData();
+  const rosterStations = Array.from(new Set(employees.map(e => e.stationLocation).filter(Boolean) as string[])).sort();
   const [refreshing, setRefreshing] = useState(false);
 
   const handleRefresh = async () => {
@@ -57,6 +61,7 @@ const Attendance = () => {
     { value: 'tamper', icon: Shield, label: language === 'ar' ? 'محاولات التلاعب' : 'Tamper Attempts' },
     { value: 'station-settings', icon: Navigation, label: language === 'ar' ? 'إعدادات المحطات' : 'Station Settings' },
     { value: 'hours-by-station', icon: Timer, label: language === 'ar' ? 'ساعات العمل الشهرية' : 'Monthly Hours' },
+    { value: 'roster', icon: CalendarDays, label: 'Roster' },
     { value: 'holidays', icon: CalendarDays, label: language === 'ar' ? 'الإجازات الرسمية' : 'Official Holidays' },
   ];
 
@@ -155,6 +160,9 @@ const Attendance = () => {
             <WorkHoursByStation />
           </TabsContent>
 
+          <TabsContent value="roster">
+            {activeTab === 'roster' && <RosterGrid employees={employees} stations={rosterStations} />}
+          </TabsContent>
           <TabsContent value="holidays">
             <OfficialHolidays />
           </TabsContent>
