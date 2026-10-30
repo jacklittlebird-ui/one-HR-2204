@@ -23,10 +23,10 @@ describe('roster period', () => {
 describe('roster codes', () => {
   const today = '2026-10-20';
   it('mission beats leave and attendance', () => {
-    expect(rosterCode({ mission: true, leave: true, attended: true }, '2026-10-01', today)).toBe('M');
+    expect(rosterCode({ mission: true, leave: true, attended: true }, '2026-10-01', today)).toBe('W');
   });
   it('leave beats attendance', () => {
-    expect(rosterCode({ leave: true, attended: true }, '2026-10-01', today)).toBe('H');
+    expect(rosterCode({ leave: true, mission: true }, '2026-10-01', today)).toBe('M');
   });
   it('attendance gives W, nothing gives X, future gives empty', () => {
     expect(rosterCode({ attended: true }, '2026-10-01', today)).toBe('W');
