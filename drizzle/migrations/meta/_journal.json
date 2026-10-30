@@ -127,6 +127,13 @@
       "when": 1793391838199,
       "tag": "0017_vehicle_manager_roster_read_access",
       "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1793391959075,
+      "tag": "0018_fix_vehicle_manager_roster_station_scope",
+      "breakpoints": true
     }
   ]
 }
