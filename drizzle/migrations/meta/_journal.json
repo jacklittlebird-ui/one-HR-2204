@@ -134,6 +134,13 @@
       "when": 1793391959075,
       "tag": "0018_fix_vehicle_manager_roster_station_scope",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1793392594366,
+      "tag": "0019_roster_allowance_employee_ids",
+      "breakpoints": true
     }
   ]
 }

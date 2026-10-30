@@ -47,3 +47,23 @@ export function expandRange(from: string, to: string | null | undefined, start: 
   for (; d <= last; d.setUTCDate(d.getUTCDate() + 1)) out.push(d.toISOString().slice(0, 10));
   return out;
 }
+
+/** Job-title group: 0 employee, 1 representative, 2 worker, 3 driver. */
+export function rosterJobGroup(title: string | null | undefined): number {
+  const t = title || '';
+  if (t.includes('مندوب')) return 1;
+  if (t.includes('عامل')) return 2;
+  if (t.includes('سائق')) return 3;
+  return 0;
+}
+
+export interface RosterSortable { employeeId?: string; jobTitle?: string; jobTitleAr?: string; hasRosterAllowance?: boolean }
+
+/** Sharm order: roster allowance first, then employees → representatives → workers → drivers, then code. */
+export function compareSharmRoster(a: RosterSortable, b: RosterSortable): number {
+  const ra = a.hasRosterAllowance ? 0 : 1, rb = b.hasRosterAllowance ? 0 : 1;
+  if (ra !== rb) return ra - rb;
+  const ga = rosterJobGroup(a.jobTitleAr || a.jobTitle), gb = rosterJobGroup(b.jobTitleAr || b.jobTitle);
+  if (ga !== gb) return ga - gb;
+  return (a.employeeId || '').localeCompare(b.employeeId || '');
+}

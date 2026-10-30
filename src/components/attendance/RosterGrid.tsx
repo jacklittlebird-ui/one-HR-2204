@@ -5,7 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Employee } from '@/types/employee';
 import { fetchAllPages } from '@/lib/fetchAllPages';
 import { getCairoDateString } from '@/lib/cairoDate';
-import { rosterPeriod, rosterCode, rosterTotals, currentRosterMonth, expandRange, RosterCode, DayFlags } from '@/lib/roster';
+import { compareSharmRoster, rosterPeriod, rosterCode, rosterTotals, currentRosterMonth, expandRange, RosterCode, DayFlags } from '@/lib/roster';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -73,6 +73,22 @@ export function RosterGrid({ employees, stations }: Props) {
     return () => { cancelled = true; };
   }, [ids, period]);
 
+  const isSharm = scoped.length > 0 && scoped.every(e => e.stationLocation === 'sharm');
+  const [allowanceIds, setAllowanceIds] = useState<Set<string>>(new Set());
+  useEffect(() => {
+    let cancelled = false;
+    if (!isSharm || !ids.length) { setAllowanceIds(new Set()); return; }
+    (async () => {
+      const out = new Set<string>();
+      for (const part of chunk(ids, 200)) {
+        const { data } = await supabase.rpc('roster_allowance_employee_ids', { p_ids: part });
+        (data as any[] || []).forEach((r: any) => out.add(typeof r === 'string' ? r : r.roster_allowance_employee_ids));
+      }
+      if (!cancelled) setAllowanceIds(out);
+    })();
+    return () => { cancelled = true; };
+  }, [isSharm, ids]);
+
   const depts = useMemo(() => Array.from(new Set(scoped.map(e => e.department).filter(Boolean))).sort(), [scoped]);
 
   const rows = useMemo(() => {
@@ -81,12 +97,14 @@ export function RosterGrid({ employees, stations }: Props) {
       .filter(e => dept === 'all' || e.department === dept)
       .filter(e => !q || [e.nameAr, e.nameEn, e.employeeId].some(v => (v || '').toLowerCase().includes(q)))
       .filter(e => e.status === 'active' || flags[e.id])
-      .sort((a, b) => (a.employeeId || '').localeCompare(b.employeeId || ''))
+      .sort((a, b) => isSharm
+        ? compareSharmRoster({ ...a, hasRosterAllowance: allowanceIds.has(a.id) }, { ...b, hasRosterAllowance: allowanceIds.has(b.id) })
+        : (a.employeeId || '').localeCompare(b.employeeId || ''))
       .map(e => {
         const codes: RosterCode[] = period.days.map(d => rosterCode(flags[e.id]?.[d], d, today));
         return { e, codes, totals: rosterTotals(codes) };
       });
-  }, [scoped, dept, search, flags, period, today]);
+  }, [scoped, dept, search, flags, period, today, isSharm, allowanceIds]);
 
   const dayTotals = useMemo(() => period.days.map((_, i) => rosterTotals(rows.map(r => r.codes[i]))), [rows, period]);
   const grand = useMemo(() => rows.reduce((a, r) => ({ W: a.W + r.totals.W, H: a.H + r.totals.H, M: a.M + r.totals.M, X: a.X + r.totals.X }), { W: 0, H: 0, M: 0, X: 0 }), [rows]);
