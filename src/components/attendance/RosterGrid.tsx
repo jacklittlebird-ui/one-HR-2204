@@ -5,7 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Employee } from '@/types/employee';
 import { fetchAllPages } from '@/lib/fetchAllPages';
 import { getCairoDateString } from '@/lib/cairoDate';
-import { compareSharmRoster, rosterPeriod, rosterCode, rosterTotals, currentRosterMonth, expandRange, RosterCode, DayFlags } from '@/lib/roster';
+import { compareRoster, rosterPeriod, rosterCode, rosterTotals, currentRosterMonth, expandRange, RosterCode, DayFlags } from '@/lib/roster';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -98,7 +98,7 @@ export function RosterGrid({ employees, stations }: Props) {
       .filter(e => !q || [e.nameAr, e.nameEn, e.employeeId].some(v => (v || '').toLowerCase().includes(q)))
       .filter(e => e.status === 'active' || flags[e.id])
       .sort((a, b) => isSharm
-        ? compareSharmRoster({ ...a, hasRosterAllowance: allowanceIds.has(a.id) }, { ...b, hasRosterAllowance: allowanceIds.has(b.id) })
+        ? compareRoster({ ...a, hasRosterAllowance: allowanceIds.has(a.id) }, { ...b, hasRosterAllowance: allowanceIds.has(b.id) })
         : (a.employeeId || '').localeCompare(b.employeeId || ''))
       .map(e => {
         const codes: RosterCode[] = period.days.map(d => rosterCode(flags[e.id]?.[d], d, today));
