@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { rosterPeriod, rosterCode, rosterTotals, currentRosterMonth, expandRange } from '@/lib/roster';
+import { rosterPeriod, rosterCode, rosterTotals, currentRosterMonth, expandRange, compareRoster } from '@/lib/roster';
 
 describe('roster period', () => {
   it('runs from the 26th of last month to the 25th of this month', () => {
