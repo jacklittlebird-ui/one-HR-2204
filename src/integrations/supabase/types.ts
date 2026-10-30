@@ -3977,6 +3977,10 @@ export type Database = {
         }
         Returns: undefined
       }
+      roster_allowance_employee_ids: {
+        Args: { p_ids: string[] }
+        Returns: string[]
+      }
       show_limit: { Args: never; Returns: number }
       show_trgm: { Args: { "": string }; Returns: string[] }
       try_acquire_attendance_lock: {
