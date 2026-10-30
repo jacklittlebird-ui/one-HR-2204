@@ -1,5 +1,6 @@
 # Roadmap
-- [ ] Make the employee Roster visible beside Attendance and verify personal-record isolation; live account verification requires an employee sign-in.
+- [x] Move the employee Roster beside Attendance; 11 Roster and personal-record isolation tests passed, build OK.
+- [ ] Verify the Roster in the live employee portal — blocked because the requesting user has no matching employee account; requires employee sign-in in the preview.
 - [x] Correct Form 1 and Form 6 PDF text and digit alignment; locally downloaded both actual templates with test data and visually verified boxed digits, labels, logos and two-page output against preview (tests passed; build OK).
 - [ ] Recheck insurance PDF downloads in the signed-in app — blocked by Cloud connection pooler unavailable and failed session restoration.
 - [x] Add direct PDF downloads for every employee form in Documents and employee profiles, named after the form and employee; verified all nine downloads and multipage PDFs in the signed-in preview (2 tests passed; build OK).
