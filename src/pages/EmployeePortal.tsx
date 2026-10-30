@@ -28,6 +28,7 @@ import { PortalTerms } from '@/components/portal/sections/PortalTerms';
 import { PortalWelcomeBanner } from '@/components/portal/PortalWelcomeBanner';
 import { PortalEidBonuses } from '@/components/portal/sections/PortalEidBonuses';
 import { PortalBonuses } from '@/components/portal/sections/PortalBonuses';
+import { PortalRoster } from '@/components/portal/sections/PortalRoster';
 import { usePreventPullToRefresh } from '@/hooks/usePreventPullToRefresh';
 import { useScrollRestoration } from '@/hooks/useScrollRestoration';
 
@@ -36,12 +37,13 @@ export type PortalSection =
   | 'salary' | 'loans' | 'evaluations' | 'training'
   | 'custody' | 'documents' | 'missions' | 'violations'
   | 'requests' | 'notifications' | 'settings' | 'uniforms' | 'terms'
-  | 'eid-bonuses' | 'bonuses';
+  | 'eid-bonuses' | 'bonuses' | 'roster';
 
 const sectionComponents: Record<PortalSection, React.FC> = {
   dashboard: PortalDashboard,
   profile: PortalProfile,
   attendance: PortalAttendance,
+  roster: PortalRoster,
   leaves: PortalLeaves,
   salary: PortalSalary,
   'eid-bonuses': PortalEidBonuses,
