@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -30,7 +30,7 @@ const Attendance = () => {
   const { records, refresh: refreshAttendance, checkIn, checkOut } = useAttendanceData();
   const [activeTab, setActiveTab] = useState('checkin');
   const { employees } = useEmployeeData();
-  const rosterStations = Array.from(new Set(employees.map(e => e.stationLocation).filter(Boolean) as string[])).sort();
+  const rosterStations = useMemo(() => Array.from(new Set(employees.map(e => e.stationLocation).filter(Boolean) as string[])).sort(), [employees]);
   const [refreshing, setRefreshing] = useState(false);
 
   const handleRefresh = async () => {
