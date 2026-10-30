@@ -30,6 +30,7 @@ const sidebarGroups: SidebarGroup[] = [
     labelEn: 'Work',
     items: [
       { key: 'attendance', labelAr: 'الحضور والانصراف', labelEn: 'Attendance', icon: Clock },
+      { key: 'roster', labelAr: 'الروستر', labelEn: 'Roster', icon: CalendarDays },
       { key: 'leaves', labelAr: 'الإجازات والأذونات', labelEn: 'Leaves & Permissions', icon: Calendar },
     ],
   },
@@ -64,7 +65,6 @@ const sidebarGroups: SidebarGroup[] = [
     labelAr: 'الطلبات',
     labelEn: 'Requests',
     items: [
-      { key: 'roster', labelAr: 'الروستر', labelEn: 'Roster', icon: CalendarDays },
       { key: 'missions', labelAr: 'مأمورياتي', labelEn: 'Missions', icon: MapPin },
       { key: 'violations', labelAr: 'مخالفاتي', labelEn: 'Violations', icon: Ban },
       { key: 'requests', labelAr: 'الطلبات', labelEn: 'Requests', icon: ClipboardList },
