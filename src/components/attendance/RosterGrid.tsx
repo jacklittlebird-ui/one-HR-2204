@@ -43,7 +43,8 @@ export function RosterGrid({ employees, stations }: Props) {
 
   const period = useMemo(() => rosterPeriod(month), [month]);
   const scoped = useMemo(() => stations ? employees.filter(e => e.stationLocation === station) : employees, [employees, stations, station]);
-  const ids = useMemo(() => scoped.map(e => e.id), [scoped]);
+  const idsKey = scoped.map(e => e.id).join(',');
+  const ids = useMemo(() => (idsKey ? idsKey.split(',') : []), [idsKey]);
 
   useEffect(() => {
     let cancelled = false;

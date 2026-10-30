@@ -21,11 +21,11 @@ export function currentRosterMonth(today: string): string {
 
 export interface DayFlags { attended?: boolean; leave?: boolean; mission?: boolean }
 
-/** Priority: M, then H, then W, otherwise X. Future days stay empty. */
+/** Priority: W, then M, then H, otherwise X. Future days stay empty. */
 export function rosterCode(flags: DayFlags | undefined, day: string, today: string): RosterCode {
+  if (flags?.attended) return 'W';
   if (flags?.mission) return 'M';
   if (flags?.leave) return 'H';
-  if (flags?.attended) return 'W';
   return day > today ? '' : 'X';
 }
 
